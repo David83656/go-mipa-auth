@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/David83656/go-mipa-auth/controllers"
 	"github.com/David83656/go-mipa-auth/initializers"
 	"github.com/gin-gonic/gin"
 )
@@ -8,14 +9,17 @@ import (
 func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectDB()
+	initializers.SyncDb()
 }
 
 func main() {
 	r := gin.Default()
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	// r.POST("/signup", func(c *gin.Context) {
+	// 	c.JSON(200, gin.H{
+	// 		"message": "Pong",
+	// 	})
+	// })
+	r.POST("/signup", controllers.SignUp)
+	r.POST("/login", controllers.Login)
 	r.Run()
 }
