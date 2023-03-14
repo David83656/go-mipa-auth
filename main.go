@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/David83656/go-mipa-auth/controllers"
 	"github.com/David83656/go-mipa-auth/initializers"
+	"github.com/David83656/go-mipa-auth/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,5 +22,6 @@ func main() {
 	// })
 	r.POST("/signup", controllers.SignUp)
 	r.POST("/login", controllers.Login)
+	r.GET("/validate", middleware.RequiredAuth, controllers.Validate)
 	r.Run()
 }
