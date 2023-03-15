@@ -14,7 +14,6 @@ import (
 )
 
 func SignUp(c *gin.Context) {
-	// EMAIL DE LA PERSONA
 	var body struct {
 		Email    string
 		Password string
@@ -26,8 +25,6 @@ func SignUp(c *gin.Context) {
 		})
 		return
 	}
-
-	// ENCRIPTAR LA CONTRASEÑA
 
 	hash, err := bcrypt.GenerateFromPassword([]byte(body.Password), 10)
 
