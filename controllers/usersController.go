@@ -13,6 +13,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+//INICIO DE SESIÓN
+
 func SignUp(c *gin.Context) {
 	var body struct {
 		Email    string
@@ -107,4 +109,22 @@ func Validate(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"Message": "Logged in!",
 	})
+}
+
+func Preciopostal(codigoPostal int, c *gin.Context) int {
+
+	precios := map[int]int{
+		5000: 100,
+		5500: 150,
+		6200: 200,
+		9000: 120,
+		9407: 180,
+		3300: 90,
+	}
+
+	precio, encontrado := precios[codigoPostal]
+	if encontrado {
+		return precio
+	}
+	return -1
 }

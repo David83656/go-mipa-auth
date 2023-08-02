@@ -19,5 +19,6 @@ func main() {
 	r.POST("/login", controllers.Login)
 	r.GET("/validate", middleware.RequiredAuth, controllers.Validate)
 	//r.POST("/cobros",controllers.PeticiónMp())
+	// r.POST("/cp",controllers.Preciopostal())
 	r.Run()
 }
